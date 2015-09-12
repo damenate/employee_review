@@ -5,6 +5,15 @@ class Employee
     @salary = salary
     @phone = phone
     @email = email
+    @review = []
   end
+
+ def review
+
+ end
+
+ def get_review
+
+ end
 
 end

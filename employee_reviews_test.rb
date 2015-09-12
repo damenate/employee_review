@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require './employee_reviews.rb'
-
+require 'byebug'
 
 class EmployeeReviews < Minitest::Test
 
@@ -41,14 +41,18 @@ class EmployeeReviews < Minitest::Test
   end
 
   def test_employee_review_text
-    assert_equal "Jake has been essential in keeping this company afloat. He is an instrumental key
+    department = Department.new("IT")
+    employee = Employee.new ("Jake")
+    department.assign(employee)
+    employee.review
+    employee.give_review("Jake has been essential in keeping this company afloat. He is an instrumental key
     in our IT department and has shown excellent leadership skills. He not only works efficiently but
     the quality of his work is impeccible. He has been working with us for six years now and
     'satisfactorly' is quite the understandment when checking the boxes for Jake. Lets give our
-    employee of the year, six years running a large raise!"
+    employee of the year, six years running a large raise!")
   end
 
-  def test_mark_if_employee__preformance
+  def test_mark_if_employee_preformance
 
   end
 
