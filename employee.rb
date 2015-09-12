@@ -24,4 +24,8 @@ class Employee
     end
   end
 
+  def get_money(raise_money)
+    @salary += raise_money
+  end
+
 end
