@@ -40,24 +40,28 @@ class EmployeeReviews < Minitest::Test
     assert_equal 100000, department.total_salary
   end
 
-  def test_employee_review_text
-    department = Department.new("IT")
-    employee = Employee.new ("Jake")
-    department.assign(employee)
-    employee.review
-    employee.give_review("Jake has been essential in keeping this company afloat. He is an instrumental key
+  def test_employee_reviews_text
+    employee = Employee.new(name: "Jake")
+    message = "Jake has been essential in keeping this company afloat. He is an instrumental key
     in our IT department and has shown excellent leadership skills. He not only works efficiently but
     the quality of his work is impeccible. He has been working with us for six years now and
     'satisfactorly' is quite the understandment when checking the boxes for Jake. Lets give our
-    employee of the year, six years running a large raise!")
+    employee of the year, six years running a large raise!"
+
+    assert_equal [message], employee.reviews(message)
   end
 
-  def test_mark_if_employee_preformance
-
+  def test_mark_employee_preformance
+    employee = Employee.new(name: "Jake")
+    employee.grade("amazeballs")
+    assert employee.preformance
+    employee.grade("worthless")
+    refute employee.preformance
   end
 
   def test_employee_raise
-
+    employee = Employee.new(name: "Jake", salary: 100000)
+    assert_equal 150000, employee.get_money(50000)
   end
 
 end
