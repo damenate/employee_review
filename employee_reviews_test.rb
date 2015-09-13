@@ -47,7 +47,6 @@ class EmployeeReviews < Minitest::Test
     the quality of his work is impeccible. He has been working with us for six years now and
     'satisfactorly' is quite the understandment when checking the boxes for Jake. Lets give our
     employee of the year, six years running a large raise!"
-
     assert_equal [message], employee.reviews(message)
   end
 
@@ -63,5 +62,60 @@ class EmployeeReviews < Minitest::Test
     employee = Employee.new(name: "Jake", salary: 100000)
     assert_equal 150000, employee.get_money(50000)
   end
+
+  def test_department_employee_raises
+    employee = Employee.new({name: "Jake", salary: 100000, phone: "123-345-567", email: "jake@aol.com"})
+    department = Department.new("IT")
+    department.assign(employee)
+    employee.reviews("Jake has been essential in keeping this company afloat. He is an instrumental key
+    in our IT department and has shown excellent leadership skills. He not only works efficiently but
+    the quality of his work is impeccible. He has been working with us for six years now and
+    'satisfactorly' is quite the understandment when checking the boxes for Jake. Lets give our
+    employee of the year, six years running a large raise!")
+    employee.grade("amazeballs")
+
+    employee2 = Employee.new({name: "Mary", salary: 110000, phone: "223-345-567", email: "mary@aol.com"})
+    department = Department.new("IT")
+    department.assign(employee2)
+    employee2.reviews("Mary has been great and the company could not function without her. She is
+    the person that makes us run like a well oiled machine. Lets make sure and keep her around.")
+    employee2.grade("amazeballs")
+
+    employee3 = Employee.new({name: "Gary", salary: 50000, phone: "323-335-567", email: "gary@aol.com"})
+    department = Department.new("IT")
+    department.assign(employee3)
+    employee3.reviews("Gary is crap. Dont give him a raise and see if you can get him to quit.")
+    employee3.grade("worthless")
+
+    department.dept_raise(100000)
+    assert employee.salary
+    assert employee2.salary
+    assert employee3.salary
+  end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 end

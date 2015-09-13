@@ -9,8 +9,16 @@ class Department
 
   def assign(employee)
     @employees << employee
-    
   end
 
+  def dept_raise(raise_money)
+    deserve = @employees.reject {|employee| employee.preformance == false}
+    total_raise = (raise_money/deserve.length)
+    for employee in @employees
+       if employee.preformance == true then
+         employee.salary += total_raise
+       end
+    end
+  end
 
 end
