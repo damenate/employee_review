@@ -95,8 +95,8 @@ class EmployeeReviews < Minitest::Test
     employee3.grade("worthless")
 
     department.dept_raise(100000)
-    assert_equal 100000, employee.salary
-    assert_equal 110000, employee2.salary
+    assert_equal 150000, employee.salary
+    assert_equal 160000, employee2.salary
     assert_equal 50000, employee3.salary
   end
 

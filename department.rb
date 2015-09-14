@@ -25,7 +25,7 @@ class Department
       end
       @employees.each do |employee|
         if employee.performance == "amazeballs"
-      employee.get_money(raise_money/desrving.length)
+      employee.get_money(raise_money/deserving.length)
       end
     end
   end

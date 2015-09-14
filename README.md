@@ -9,4 +9,4 @@ The goal was to understand blocks in Ruby, classification problems, regular expr
 Through this assignment I was able to create blocks in Ruby and get a better grasp on keyword arguments. This assignment also laid a better groundwork for future test driven development while refining my ability to code.
 
 ## Takeaways
-The assignment was 
+The assignment was a great practice for what we learned in class. The repetition of writing tests was much needed. After this assignment, I understand the need for test driven development but need a lot more practice and review. 

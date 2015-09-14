@@ -8,8 +8,6 @@ class Employee
     @email = email
     @reviews = []
     @performance = "Use only amazeballs or worthless!"
-    @good_employee = []
-    @bad_employee = []
   end
 
   def reviews(message)
