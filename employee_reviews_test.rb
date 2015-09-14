@@ -37,7 +37,13 @@ class EmployeeReviews < Minitest::Test
     department = Department.new("IT")
     assert_equal "IT", department.name
     refute_equal "Janitorial", department.name
-    assert_equal 100000, department.total_salary
+  end
+
+  def test_department_total_salary
+    department = Department.new("IT")
+    employee = Employee.new({name: "Jake", salary: 100000, phone: "123-345-567", email: "jake@aol.com"})
+    department.assign(employee)
+    assert 100000 == department.add_dept_salary
   end
 
   def test_employee_reviews_text
@@ -50,12 +56,12 @@ class EmployeeReviews < Minitest::Test
     assert_equal [message], employee.reviews(message)
   end
 
-  def test_mark_employee_preformance
+  def test_mark_employee_performance
     employee = Employee.new(name: "Jake")
     employee.grade("amazeballs")
-    assert employee.preformance
+    assert employee.performance
     employee.grade("worthless")
-    refute employee.preformance
+    refute employee.performance
   end
 
   def test_employee_raise
@@ -88,34 +94,41 @@ class EmployeeReviews < Minitest::Test
     employee3.grade("worthless")
 
     department.dept_raise(100000)
-    assert employee.salary
-    assert employee2.salary
-    assert employee3.salary
+    assert_equal 100000, employee.salary
+    assert_equal 110000, employee2.salary
+    assert_equal 50000, employee3.salary
   end
 
 
+  def test_departmnet_raise_with_block
+    employee = Employee.new({name: "Jake", salary: 100000, phone: "123-345-567", email: "jake@aol.com"})
+    department = Department.new("IT")
+    department.assign(employee)
+    employee.grade("amazeballs")
 
+    employee2 = Employee.new({name: "Mary", salary: 110000, phone: "223-345-567", email: "mary@aol.com"})
+    department = Department.new("IT")
+    department.assign(employee2)
+    employee2.grade("amazeballs")
 
+    employee3 = Employee.new({name: "Gary", salary: 50000, phone: "323-335-567", email: "gary@aol.com"})
+    department = Department.new("IT")
+    department.assign(employee3)
+    employee3.grade("worthless")
 
+    department.block_dept_raise(50000){|employee| employee.performance == "amazeballs"}
+    assert_equal 100000, employee.salary
+    assert_equal 110000, employee2.salary
+    assert_equal 50000, employee3.salary
 
+    department.block_dept_raise(50000){|employee| employee.salary < 100000}
+    assert_equal 100000, employee.salary
+    assert_equal 110000, employee2.salary
+    assert_equal 50000, employee3.salary
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    department.block_dept_raise(50000){|employee| employee.salary < 100000}
+    assert_equal 100000, employee.salary
+    assert_equal 110000, employee2.salary
+    assert_equal 50000, employee3.salary
+  end
 end

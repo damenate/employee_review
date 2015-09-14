@@ -1,12 +1,13 @@
 class Employee
-  attr_reader :reviews, :name, :salary, :phone, :email, :preformance
+  attr_reader :reviews, :name, :phone, :email, :performance
+  attr_accessor :salary
   def initialize(name: "Jim", salary: 1000, phone: "123-4567", email: "example@email.com", review: "")
     @name = name
     @salary = salary
     @phone = phone
     @email = email
     @reviews = []
-    @preformance = "Use only amazeballs or worthless!"
+    @performance = "Use only amazeballs or worthless!"
     @good_employee = []
     @bad_employee = []
   end
@@ -16,15 +17,11 @@ class Employee
     @reviews
   end
 
-  def add_all_salaries
-    @employees.inject(0) {|sum, employee| sum + employee.salary}
-  end
-
   def grade(input)
     if input == "amazeballs"
-      @preformance = true
+      @performance = true
     elsif input == "worthless"
-      @preformance = false
+      @performance = false
     else
       puts "Use only amazeballs or worthless!"
     end
@@ -33,19 +30,6 @@ class Employee
   def get_money(raise_money)
     @salary += raise_money
   end
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 end
