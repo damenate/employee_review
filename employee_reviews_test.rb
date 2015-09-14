@@ -17,6 +17,7 @@ class EmployeeReviews < Minitest::Test
 
   def test_employee_info
     employee = Employee.new({name: "Jake", salary: 100000, phone: "123-345-567", email: "jake@aol.com"})
+    assert employee
   end
 
   def test_add_employee_to_department
@@ -124,11 +125,12 @@ class EmployeeReviews < Minitest::Test
     department.block_dept_raise(50000){|employee| employee.salary < 100000}
     assert_equal 100000, employee.salary
     assert_equal 110000, employee2.salary
-    assert_equal 50000, employee3.salary
+    assert_equal 100000, employee3.salary
 
     department.block_dept_raise(50000){|employee| employee.salary < 100000}
     assert_equal 100000, employee.salary
     assert_equal 110000, employee2.salary
-    assert_equal 50000, employee3.salary
+    assert_equal 100000, employee3.salary
+
   end
 end
