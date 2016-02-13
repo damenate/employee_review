@@ -1,7 +1,7 @@
 class Department
   attr_reader :name, :employees, :department, :total_salary
   attr_accessor :salary
-  def initialize(name, department: "IT", total_salary: 100000)
+  def initialize(name:, department: "IT", total_salary: 0)
     @employees = []
     @name = name
     @department = department
@@ -13,7 +13,7 @@ class Department
   end
 
   def add_dept_salary
-    @employees.inject(0) {|sum, employee| sum + employee.salary}
+    @employees.reduce(0) {|sum, employee| sum + employee.salary}
   end
 
   def dept_raise(raise_money)
